@@ -9,7 +9,7 @@ On PuTTY, you will be prompted to enter a date and the path on the XBT Network t
 
 If nothing is entered for a minute, or you merely press "enter" for both inputs, a default date and path will be chosen
 
-Your location will then be displayed in hte GPRMC format approximately every second. 
+Your location will then be displayed in the GPRMC format approximately every second. 
 
 
 Close PuTTY, and open OpenCPN next
