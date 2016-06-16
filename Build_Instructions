@@ -1,0 +1,25 @@
+Hardware: -Arduino Uno
+          -USB Cable A to B
+          -Breadboard
+          -DB9 Male to Female Piece
+          -DB9 Male to Female Serial Cable
+          -MAX232
+          -4 Capacitors
+          -Circuit Wires.
+
+Software: -Arduino: IDE used to upload the code on the Aruino Uno board.
+          -PuTTY: SSH that receives information serially and handles user input.
+          -OpenCPN (optional): Uses the information from the Serial port to plot a path (useful for visual confirmation).
+
+Files: -GPS-Simulator.ino: Contains all of the classes and functions necessary to communicate serially with PuTTY or any other         programs. Every second, an NMEA GPRMC sentance is displayed on PuTTY with an updated time and coordinate. The coordinate       is updated by calculating a bearing every second based on the current coordinate, speed in knots, and final coordinate.        The path taken to this final coordinate is calculated by using the Great Circle Distance. Once the total distance has          been covered, the final coordinate and start coordinates are swapped in order to traverse the path in the opposite             direction. Once the path is completed 5 times in each direction, another route will begin.
+
+Possible alterations to code: -knots: On line 125, if you want the ship to travel slower or faster, you could change the value of                              "knots". Make sure to not make this value too high (i.e. >50,000) because you may begin to see                                 missing data points
+                              -voyages: On line 126, if you want to go back and forth on the same path for a certain amount of times, change this value.
+
+Open up PuTTY, and upload the code. 
+On PuTTY, you will be prompted to enter a date and the path on the XBT Network that you would like to track.
+If nothing is entered for a minute, or you merely press "enter" for both inputs, a default date and path will be chosen.
+Your location will then be displayed in the GPRMC format approximately every second. 
+Close PuTTY, and open OpenCPN next.
+Select the Serial Port that you are connected to.
+The path of your choice will be on display there and once it travels in each direction 5 times, the next path will begin.
