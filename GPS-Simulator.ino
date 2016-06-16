@@ -1,4 +1,3 @@
-# GPS-Simulator
 #include <Time.h>
 #include <TimeLib.h>
 #include <SoftwareSerial.h>
