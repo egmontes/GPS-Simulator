@@ -10,6 +10,7 @@ double latStart;
 double latEnd;
 double lonStart;
 double lonEnd;
+double speed;
 
 void setup() {
   //Open serial communications and wait for port to open:
@@ -122,6 +123,7 @@ double path[][4] = {{59.786,58.636,-43.786,-5.002},{47.561,64.127, -52.713, -21.
 {36.141,44.399,-5.354,8.962},{44.399,38.116,8.962,13.361}};
 
 double knots = 20.0;
+int voyages = 10;
 int trips = 0;
 int period = 1000;
 double totalDistance = 0;
@@ -346,7 +348,7 @@ class EarthGeodesics {
 }; //end EarthGeodesics
 
 void loop() {
-  if (trips == 10) { //automatically begin another path after 10 trips
+  if (trips == voyages) { //automatically begin another path after 10 trips
     choice += 1;
     trips = 0;
     if (choice == 15){
