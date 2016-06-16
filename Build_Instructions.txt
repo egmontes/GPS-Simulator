@@ -71,5 +71,5 @@ Step 3: Running the code
 
 Step 4: New Path
 
--To select another path instead of letting the paths cycle in order over time, re-upload the code. This will prmopt the user
- input in PuTTY once again.
+-To select another path instead of letting the paths cycle in order over time, close PuTTY, re-upload the code, and re-open
+ PuTTY. This will prmopt the user input in PuTTY once again.
