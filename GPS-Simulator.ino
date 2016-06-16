@@ -27,6 +27,7 @@ void setup() {
   int MM = 3;
   int yy = 16;
   mySerial.println("Enter the current GMT time and date in this format:\n\rhhmmssddMMyy");
+  Serial.println("Enter the current GMT time and date in this format:\n\rhhmmssddMMyy");
   long t = 60000; //time limit
   while (millis() <= t) {
     while(mySerial.available()) {
@@ -89,6 +90,71 @@ void setup() {
           mySerial.println("");
           mySerial.println("That is not the proper format, please try again");
           mySerial.println("hhmmssddMMyy");
+          t+= millis(); //add more time
+          continue;
+        } //end else
+      } //end else if
+    } //end while
+    while(Serial.available()>0) {
+      char incoming = Serial.read();
+      Serial.print(incoming); //view typing
+      input += incoming;
+      if (incoming == 127) { //adjust for backspaces in user input
+        format += 2;
+      }//end if
+      else if (input.substring(0,3)== "egm" and input.substring(3).toInt() >= 1 and 
+          input.substring(3).toInt() <= 14 and incoming == '\r') {
+          //set input as the path choice
+          choice = input.substring(3).toInt();
+          t=0;
+      } //end else if
+      else if (input.substring(0,3) == "egm" and incoming == '\r' and input.length() == 4) {
+        //default path choice if no input
+        t=0;
+      } //end else if
+      else if (input.substring(0,3)== "egm" and incoming == '\r' and 
+          (input.substring(3).toInt() < 1 or input.substring(3).toInt() > 14)) {
+          //invalid path choice
+          input = "egm"; //reset path choice input
+          Serial.println("That is not a Path option. Must be 1-14");
+          t+= millis(); //add more time
+          continue;
+      } //end else if
+      else if (incoming == '\r') { //enter button is pressed for the date input
+        if (input.length() == format) { //12 character date
+          hh = input.substring(0,2).toInt();
+          mm = input.substring(2,4).toInt();
+          ss = input.substring(4,6).toInt();
+          dd = input.substring(6,8).toInt();
+          MM = input.substring(8,10).toInt();
+          yy = input.substring(10).toInt();
+          t += millis(); //add more time
+          Serial.println("");
+          Serial.println("Enter the Path Number of your choice:\n\r(1)AX_1\n\r(2)AX_2");
+          Serial.println("(3)AX_7\n\r(4)AX_8\n\r(5)AX_10\n\r(6)AX_18\n\r(7)AX_20");
+          Serial.println("(8)AX_25\n\r(9)AX_32\n\r(10)AX_90\n\r(11)AX_97\n\r(12)MX_1");
+          Serial.println("(13)MX_2\n\r(14)MX_4"); //list of path options
+          input = "egm"; //differentiate path input from date input
+        } //end if
+        else if (input.length() == 1){ //default date if no input
+          int hh = 0;
+          int mm = 0;
+          int ss = 0;
+          int dd = 7;
+          int MM = 3;
+          int yy = 16;
+          input = "egm"; //differentiate path input from date input
+          t += millis(); //add more time
+          Serial.println("Enter the Path Number of your choice:\n\r(1)AX_1\n\r(2)AX_2");
+          Serial.println("(3)AX_7\n\r(4)AX_8\n\r(5)AX_10\n\r(6)AX_18\n\r(7)AX_20");
+          Serial.println("(8)AX_25\n\r(9)AX_32\n\r(10)AX_90\n\r(11)AX_97\n\r(12)MX_1");
+          Serial.println("(13)MX_2\n\r(14)MX_4"); //list of path options
+        } //end else if
+        else { //date input is improper format
+          input = "";
+          Serial.println("");
+          Serial.println("That is not the proper format, please try again");
+          Serial.println("hhmmssddMMyy");
           t+= millis(); //add more time
           continue;
         } //end else
@@ -397,6 +463,7 @@ void loop() {
   while (answer == true) {
     //periodically print GPRMC to Serial port
     mySerial.println(nsg.generateGPRMC(currentPosition, currentBearing, knots) + "\n\r");
+    Serial.println(nsg.generateGPRMC(currentPosition, currentBearing, knots) + "\n\r");
     currentTime = millis();
     distanceInPeriod = (currentTime - previousTime) * knots / 3600000.0;
     distanceTraveled += distanceInPeriod; //keep track of total distance traveled
