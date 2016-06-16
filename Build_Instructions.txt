@@ -4,7 +4,7 @@ Hardware: -Arduino Uno
           -DB9 Male to Female Piece
           -DB9 Male to Female Serial Cable
           -MAX232
-          -4 Capacitors
+          -4 1.0 microFarad Capacitors
           -Circuit Wires.
 
 Software: -Arduino: IDE used to upload the code on the Aruino Uno board.
@@ -25,12 +25,48 @@ Possible alterations to code: -knots: On line 125, if you want the ship to trave
                               -voyages: On line 126, if you want to go back and forth on the same path for a certain amount of 
                                         times, change this value.
 
-Step 1: -Wiring
+Step 1: Wiring
 
-Open up PuTTY, and upload the code. 
-On PuTTY, you will be prompted to enter a date and the path on the XBT Network that you would like to track.
-If nothing is entered for a minute, or you merely press "enter" for both inputs, a default date and path will be chosen.
-Your location will then be displayed in the GPRMC format approximately every second. 
-Close PuTTY, and open OpenCPN next.
-Select the Serial Port that you are connected to.
-The path of your choice will be on display there and once it travels in each direction 5 times, the next path will begin.
+-Solder one end of Wire5, Wire6, and Wire7 to Serial Piece Male 5, 3, and 2 respectively. 
+-MAX232 --> The "U" shape is on the top of the device as in the figure.
+
+             _____
+          1-| |_| |-16        -Capacitor1+ TO MAX232 1      -Wire1 FROM Arduino Uno 5V Pin TO Power
+          2-|     |-15        -Capacitor1- TO MAX232 3      -Wire2 FROM Arduino Uno GND TO GND  
+          3-| MAX |-14        -Capacitor2+ TO MAX232 2      -Wire3 FROM Arduino Uno Pin 11 TO MAX232 11
+          4-| 232 |-13        -Capacitor2- TO GND           -Wire4 FROM Arduino Uno Pin 10 TO MAX232 12
+          5-|     |-12        -Capacitor3+ TO MAX232 4      -Wire5 FROM Serial Piece Male 5 TO GND
+          6-|     |-11        -Capacitor3- TO MAX232 5      -Wire6 FROM Serial Piece Male 3 TO MAX232 13
+          7-|  o  |-10        -Capacitor4+ TO GND           -Wire7 FROM Serial Piece Male 2 TO MAX232 14
+          8-|_____|-9         -Capacitor4- TO MAX232 6
+          
+               Serial Piece Male
+          _____________   _____________
+          \ o o o o o /-->\ 1 2 3 4 5 /    
+           \ o o o o / --> \ 6 7 8 9 / 
+           
+Step 2: Connections
+
+-Connect the USB cable from the computer to the Arduino Uno
+-Connect the Serial Cable Female to the computer Serial port
+-Connect the Serial Cable Male to the Serial Piece Female
+
+Step 3: Running the code
+
+-Open up PuTTY on the computer.
+-Select "Serial" on PuTTY Configuration and set the "speed" to 4800.
+-Also make sure that the correct "Serial Line" is selected.
+-Click "Open".
+-Open up the GPS-Simulator.ino file in Arduino on the computer.
+-Upload the code.
+-If no text appears on PuTTY after the code is uploaded, open up the Arduino Serial monitor (make sure you select 4800 baud).
+-Answer the two prompts on PuTTY and press "Enter" for each (Either pressing "Enter" with no answer, or waiting a minute will 
+ set the default values for the date/time and the path choice.
+-(Optional) 
+-Close PuTTY and open OpenCPN.
+-Select the correct Serial port and speed once again. 
+
+Step 4: New Path
+
+-To select another path instead of letting the paths cycle in order over time, either re-upload the code, or close the Arduino 
+ Serial Monitor and re-open it. This will prmopt the user input in PuTTY once again.
