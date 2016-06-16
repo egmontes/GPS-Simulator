@@ -1,5 +1,6 @@
 Hardware: -Arduino Uno
           -USB Cable A to B
+          -10.0 microFarad capacitor
           -(If using external port)
           -Breadboard
           -DB9 Male to Female Piece
@@ -26,8 +27,9 @@ Possible alterations to code: -knots: On line 125, if you want the ship to trave
                               -voyages: On line 126, if you want to go back and forth on the same path for a certain amount of 
                                         times, change this value.
 
-Step 1: (Optional) Wiring
-
+Step 1:  Wiring
+-After uploadin the code onto the Arduino, plug in the 10 microFarad capacitor FROM Reset TO GND on the Arduino Uno
+-(If using external port)
 -Solder one end of Wire5, Wire6, and Wire7 to Serial Piece Male 5, 3, and 2 respectively. 
 -MAX232 --> The "U" shape is on the top of the device as in the figure.
 
@@ -71,5 +73,6 @@ Step 3: Running the code
 
 Step 4: New Path
 
--To select another path instead of letting the paths cycle in order over time, close PuTTY, re-upload the code, and re-open
- PuTTY. This will prmopt the user input in PuTTY once again.
+-To select another path instead of letting the paths cycle in order over time, close PuTTY, take out the 10.0 microFarad 
+ capacitor, re-upload the code, re-plug in the capacitor, and re-open PuTTY. This will prmopt the user input in PuTTY once 
+ again.
