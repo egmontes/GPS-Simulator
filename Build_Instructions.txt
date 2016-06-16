@@ -37,7 +37,7 @@ Step 1: Wiring
           4-| 232 |-13        -Capacitor2- TO GND           -Wire4 FROM Arduino Uno Pin 10 TO MAX232 12
           5-|     |-12        -Capacitor3+ TO MAX232 4      -Wire5 FROM Serial Piece Male 5 TO GND
           6-|     |-11        -Capacitor3- TO MAX232 5      -Wire6 FROM Serial Piece Male 3 TO MAX232 13
-          7-|  o  |-10        -Capacitor4+ TO GND           -Wire7 FROM Serial Piece Male 2 TO MAX232 14
+          7-|     |-10        -Capacitor4+ TO GND           -Wire7 FROM Serial Piece Male 2 TO MAX232 14
           8-|_____|-9         -Capacitor4- TO MAX232 6
           
                Serial Piece Male
