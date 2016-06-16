@@ -1,5 +1,6 @@
 Hardware: -Arduino Uno
           -USB Cable A to B
+          -(If using external port)
           -Breadboard
           -DB9 Male to Female Piece
           -DB9 Male to Female Serial Cable
@@ -25,7 +26,7 @@ Possible alterations to code: -knots: On line 125, if you want the ship to trave
                               -voyages: On line 126, if you want to go back and forth on the same path for a certain amount of 
                                         times, change this value.
 
-Step 1: Wiring
+Step 1: (Optional) Wiring
 
 -Solder one end of Wire5, Wire6, and Wire7 to Serial Piece Male 5, 3, and 2 respectively. 
 -MAX232 --> The "U" shape is on the top of the device as in the figure.
@@ -48,6 +49,7 @@ Step 1: Wiring
 Step 2: Connections
 
 -Connect the USB cable from the computer to the Arduino Uno
+-(If using external port)
 -Connect the Serial Cable Female to the computer Serial port
 -Connect the Serial Cable Male to the Serial Piece Female
 
@@ -55,11 +57,12 @@ Step 3: Running the code
 
 -Open up PuTTY on the computer.
 -Select "Serial" on PuTTY Configuration and set the "speed" to 4800.
--Also make sure that the correct "Serial Line" is selected.
+-Also make sure that the correct "Serial Line" is selected. COM4 is Arduino Line which requires no wiring or external port.
 -Click "Open".
 -Open up the GPS-Simulator.ino file in Arduino on the computer.
 -Upload the code.
--If no text appears on PuTTY after the code is uploaded, open up the Arduino Serial monitor (make sure you select 4800 baud).
+-(If using external port) If no text appears on PuTTY after the code is uploaded, open up the Arduino Serial monitor (make sure
+ you select 4800 baud).
 -Answer the two prompts on PuTTY and press "Enter" for each (Either pressing "Enter" with no answer, or waiting a minute will 
  set the default values for the date/time and the path choice.
 -(Optional) 
@@ -68,5 +71,5 @@ Step 3: Running the code
 
 Step 4: New Path
 
--To select another path instead of letting the paths cycle in order over time, either re-upload the code, or close the Arduino 
- Serial Monitor and re-open it. This will prmopt the user input in PuTTY once again.
+-To select another path instead of letting the paths cycle in order over time, re-upload the code. This will prmopt the user
+ input in PuTTY once again.
