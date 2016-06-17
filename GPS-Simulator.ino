@@ -1,5 +1,4 @@
 #include <Time.h>
-#include <TimeLib.h>
 #include <SoftwareSerial.h>
 #include <math.h>
 
@@ -10,6 +9,12 @@ double latStart;
 double latEnd;
 double lonStart;
 double lonEnd;
+String hr;
+String min;
+String sec;
+String mon;
+String d;
+String yr;
 
 void setup() {
   //Open serial communications and wait for port to open:
@@ -94,7 +99,7 @@ void setup() {
         } //end else
       } //end else if
     } //end while
-    while(Serial.available()>0) {
+    while(Serial.available()) {
       char incoming = Serial.read();
       Serial.print(incoming); //view typing
       input += incoming;
@@ -305,12 +310,6 @@ class NMEASentenceGenerator { //produce the proper format for GPRMC
   public:
     String generateGPRMC(Position p, double bearing, double sog) {
       //time formatting
-      String hr;
-      String min;
-      String sec;
-      String mon;
-      String d;
-      String yr;
       time_t t = now(); // Store the current time in time variable t 
       if (hour(t) < 10) {
         hr = "0" + String(hour(t));
