@@ -10,7 +10,6 @@ double latStart;
 double latEnd;
 double lonStart;
 double lonEnd;
-double speed;
 
 void setup() {
   //Open serial communications and wait for port to open:
