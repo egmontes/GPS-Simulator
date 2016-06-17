@@ -12,9 +12,6 @@ double lonEnd;
 String hr;
 String min;
 String sec;
-String mon;
-String d;
-String yr;
 
 void setup() {
   //Open serial communications and wait for port to open:
@@ -311,6 +308,9 @@ class NMEASentenceGenerator { //produce the proper format for GPRMC
     String generateGPRMC(Position p, double bearing, double sog) {
       //time formatting
       time_t t = now(); // Store the current time in time variable t 
+      String mon;
+      String d;
+      String yr;
       if (hour(t) < 10) {
         hr = "0" + String(hour(t));
       } //end if
