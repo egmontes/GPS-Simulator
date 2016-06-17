@@ -74,5 +74,5 @@ Step 3: Running the code
 Step 4: New Path
 
 -To select another path instead of letting the paths cycle in order over time, close PuTTY, take out the 10.0 microFarad 
- capacitor and plug it back in. Re-open PuTTY and it will prmopt the user input once 
- again.
+ capacitor and plug it back in. Re-open PuTTY and it will prmopt the user input once again.
+-Any time you power down the Arduino, it will restart as well.
