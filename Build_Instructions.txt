@@ -70,6 +70,11 @@ Step 3: Running the code
 -(Optional) 
 -Close PuTTY and open OpenCPN.
 -Select the correct Serial port and speed once again. 
+-(ALTERNATIVE OPTION)
+-Open up the GPS-Simulator.ino file in Arduino on the computer.
+-Upload the code.
+-Open the Serial Monitor and select baud of 4800 and "Carriage return" (button next to baud)
+-Enter in answers for the prompts on the Arduino Serial Monitor directly
 
 Step 4: New Path
 
